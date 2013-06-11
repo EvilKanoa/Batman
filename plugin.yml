@@ -4,8 +4,36 @@ main: ca.kanoa.batman.startup.Startup
 desciption: A basic API for kanoa's and keiron's plugins, this alone this nothing.
 authors: [12323op, Kanoa, KraZ__, Kieron Wiltshire]
 load: STARTUP
-prefix: Batman
+prefix: MCC
+permissions:
+    cod.check:
+        description: Allows viewing of pvp stats
+        children:
+            cod.check.self: true
+            cod.check.other: true
+    cod.check.self:
+        description: Allows viewing your own pvp stats
+        default: op
+    cod.check.other:
+        description: Allows viewing someone elses pvp stats
+        default: op
+    cod.track:
+        description: Allows tracking of pvp stats
+        default: true
+    cod.admin:
+        description: Allows use of the admin commands
+        default: op
 commands:
     batman:
         description: Version checker for the Batman API
         usage: /batman
+    pvp:
+        description: Check pvp stats
+        usage: /pvp <user>
+        aliases: [pvpstats, stats, stat]
+    pvpa:
+        description: CODStats admin command
+        usage: /pvpa <arguments>
+        aliases: [pvpadmin, statadmin, statsadmin]
+        permission: cod.admin
+        permission-message: You don't have permission!

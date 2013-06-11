@@ -27,11 +27,17 @@ public class WorldLoader implements Util {
 	}
 
 	public static boolean unload(String worldName) {
+		return unload(worldName, false);
+	}
+	
+	public static boolean unload(String worldName, boolean save) {
 		
 		World world = Bukkit.getWorld(worldName);
-		
-		return Bukkit.unloadWorld(world, false);
-		
+		world.setAutoSave(save);
+		Bukkit.getLogger().info("Unloading world (Autosave: " + save + "): " + world.getName());
+		boolean unloaded = Bukkit.unloadWorld(world, save);
+		Bukkit.getLogger().info("Unloaded fully (" + world.getName() + "): " + unloaded);
+		return unloaded;
 	}
 	
 	public static boolean load(String worldName) {
@@ -39,9 +45,12 @@ public class WorldLoader implements Util {
 	}
 	
 	public static boolean load(String worldName, boolean save) {
+		Bukkit.getLogger().info("Loading world (Autosave: " + save + "): " + worldName);
 		World w = Bukkit.createWorld(new WorldCreator(worldName));
 		w.setAutoSave(save);
-		return w != null;
+		boolean loaded = (w != null);
+		Bukkit.getLogger().info("Loaded fully (" + worldName + "): " + loaded);
+		return loaded;
 	}
 	
 }
