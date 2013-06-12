@@ -83,7 +83,7 @@ public class CommandExecutor implements org.bukkit.command.CommandExecutor {
 		}
 		else if(args.length == 1 && args[0].equalsIgnoreCase("send")){
 			sender.sendMessage(red + "Sending current stats to SQL database...");
-			Main.sqlhelp.sendStats(Main.stats);
+			Main.sqlhelp.sendStats(Main.getStats());
 			sender.sendMessage(green + "Stats sent!");
 			return true;
 		}

@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashSet;
+import java.util.Set;
 
 import ca.kanoa.batman.startup.Startup;
 
@@ -38,7 +39,7 @@ public class SQLHelper {
 
 	}
 
-	public synchronized void sendStats(HashSet<Stats> stats){
+	public synchronized void sendStats(Set<Stats> stats){
 		try {
 			createTable();
 

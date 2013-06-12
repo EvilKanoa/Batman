@@ -76,6 +76,11 @@ public class Stats {
 		return this.money;
 	}
 	
+	public int removeMoney(int money) {
+		this.money -= money;
+		return this.money;
+	}
+	
 	private boolean resetKillstreak(){
 		if(this.currentKillstreak > this.killstreak){
 			this.killstreak = this.currentKillstreak;

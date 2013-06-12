@@ -7,7 +7,7 @@ public class Saver implements Runnable {
 		long sleepTime = Main.config.getInt("autosave_delay") * 1000;
 		sleep(sleepTime);
 		while (Main.autoSave) {
-			Main.sqlhelp.sendStats(Main.stats);
+			Main.sqlhelp.sendStats(Main.getStats());
 			sleep(sleepTime);
 		}
 	}

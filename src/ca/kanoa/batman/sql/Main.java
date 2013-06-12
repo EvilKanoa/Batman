@@ -3,6 +3,7 @@ package ca.kanoa.batman.sql;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -15,7 +16,7 @@ public class Main {
 	public static Main plugin;
 	public static boolean autoSave;
 	
-	public static HashSet<Stats> stats;
+	private static Set<Stats> stats;
 	public static ArrayList<Killstreak> killstreaks = new ArrayList<Killstreak>();
 
 	public static FileConfiguration config;
@@ -99,7 +100,7 @@ public class Main {
 	}
 
 
-	public static Stats getStatsForPlayer(String player){
+	public synchronized static Stats getStatsForPlayer(String player){
 		for(Stats s : stats)
 			if(s.getPlayerName().equals(player))
 				return s;
@@ -108,8 +109,20 @@ public class Main {
 		return stat;
 	}
 
-	public static Stats getStatsForPlayer(Player player){
+	public synchronized static Stats getStatsForPlayer(Player player){
 		return getStatsForPlayer(player.getName());
+	}
+	
+	public synchronized static Set<Stats> getStats() {
+		return stats;
+	}
+	
+	public synchronized static void removeStat(Stats stat) {
+		stats.remove(stat);
+	}
+	
+	public synchronized static void addStat(Stats stat) {
+		stats.add(stat);
 	}
 
 	public String killstreakMessage() {

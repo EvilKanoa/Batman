@@ -36,15 +36,15 @@ public class SQL implements Util {
 	}
 	
 	public static void setStats(Stats stats) {
-		Main.stats.remove(Main.getStatsForPlayer(stats.getPlayerName()));
-		Main.stats.add(stats);
+		Main.removeStat(Main.getStatsForPlayer(stats.getPlayerName()));
+		Main.addStat(stats);
 	}
 	
 	public static void addKill(String player) {
 		Stats stats = Main.getStatsForPlayer(player);
-		Main.stats.remove(stats);
+		Main.removeStat(stats);
 		stats.addKill();
-		Main.stats.add(stats);
+		Main.addStat(stats);
 	}
 	
 	public static int getKills(String player) {
@@ -53,9 +53,9 @@ public class SQL implements Util {
 	
 	public static void addDeath(String player) {
 		Stats stats = Main.getStatsForPlayer(player);
-		Main.stats.remove(stats);
+		Main.removeStat(stats);
 		stats.addDeath();
-		Main.stats.add(stats);
+		Main.addStat(stats);
 	}
 	
 	public static int getDeaths(String player) {
@@ -64,9 +64,9 @@ public class SQL implements Util {
 	
 	public static void addWin(String player) {
 		Stats stats = Main.getStatsForPlayer(player);
-		Main.stats.remove(stats);
+		Main.removeStat(stats);
 		stats.addWin();
-		Main.stats.add(stats);
+		Main.addStat(stats);
 	}
 	
 	public static int getWins(String player) {
@@ -75,9 +75,9 @@ public class SQL implements Util {
 	
 	public static void addRodUsed(String player) {
 		Stats stats = Main.getStatsForPlayer(player);
-		Main.stats.remove(stats);
+		Main.removeStat(stats);
 		stats.addRodUsed();
-		Main.stats.add(stats);
+		Main.addStat(stats);
 	}
 	
 	public static int getRodsUsed(String player) {
@@ -86,9 +86,9 @@ public class SQL implements Util {
 	
 	public static void setKillstreak(String player, int killstreak) {
 		Stats stats = Main.getStatsForPlayer(player);
-		Main.stats.remove(stats);
+		Main.removeStat(stats);
 		stats.setKillstreak(killstreak);
-		Main.stats.add(stats);
+		Main.addStat(stats);
 	}
 	
 	public static int getKillstreak(String player) {
@@ -97,9 +97,16 @@ public class SQL implements Util {
 	
 	public static void addMoney(String player, int money) {
 		Stats stats = Main.getStatsForPlayer(player);
-		Main.stats.remove(stats);
+		Main.removeStat(stats);
 		stats.addMoney(money);
-		Main.stats.add(stats);
+		Main.addStat(stats);
+	}
+	
+	public static void removeMoney(String player, int money) {
+		Stats stats = Main.getStatsForPlayer(player);
+		Main.removeStat(stats);
+		stats.removeMoney(money);
+		Main.addStat(stats);
 	}
 	
 	public static int getMoney(String player) {
