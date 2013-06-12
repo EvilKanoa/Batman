@@ -27,7 +27,8 @@ public class Chat {
 	}
 	
 	public void onDisable() {
-		//save chatLog to plugins/our-folder/chat/log-date-time.txt;
+		//save chatLog to plugins/our-folder/chat/log-date-time.txt; 
+		// [Chat][2013/03/32-09:32:23] <12323op> Why the hell guys?
 	}
 	
 	/**
