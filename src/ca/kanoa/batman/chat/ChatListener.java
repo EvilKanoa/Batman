@@ -24,6 +24,7 @@ public class ChatListener implements Listener {
 			Bukkit.getLogger().info("[Chat] " + msg);
 			for (Player player : Bukkit.getOnlinePlayers())
 				player.sendMessage(msg);
+			Chat.getInstance().log(msg);
 		}
 		
 		event.setCancelled(true);
