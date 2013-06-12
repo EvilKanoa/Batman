@@ -20,12 +20,12 @@ public class SQLHelper {
 	public SQLHelper(boolean online, MySQLInfo info){
 		this.online = online;
 		this.info = info;
-        File dbFile = new File(Startup.plugin.getDataFolder(), "Stats.db");
+        File dbFile = new File(Startup.getInstance().getDataFolder(), "Stats.db");
 
 		try {
 			if(!online){
 				Class.forName("org.sqlite.JDBC");
-				Startup.plugin.getDataFolder().mkdirs();
+				Startup.getInstance().getDataFolder().mkdirs();
 				dbFile.createNewFile();
 				this.dbLocation = "jdbc:sqlite:" + dbFile.getPath();
 			}

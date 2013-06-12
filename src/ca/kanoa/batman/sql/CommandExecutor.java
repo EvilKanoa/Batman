@@ -44,8 +44,8 @@ public class CommandExecutor implements org.bukkit.command.CommandExecutor {
 		if(args.length == 1 && args[0].equalsIgnoreCase("reload")){
 			sender.sendMessage(red + "Reloading config...");
 			
-			Startup.plugin.reloadConfig();
-			Main.config = Startup.plugin.getConfig();
+			Startup.getInstance().reloadConfig();
+			Main.config = Startup.getInstance().getConfig();
 			
 			Main.confighelp.saveConfig(Main.killstreakConfig, "Killstreaks.yml");
 			Main.killstreakConfig = Main.confighelp.getConfig("Killstreaks.yml");

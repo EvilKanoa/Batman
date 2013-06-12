@@ -6,18 +6,22 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import ca.kanoa.batman.chat.Chat;
 import ca.kanoa.batman.sql.Main;
 
 public class Startup extends JavaPlugin implements CommandExecutor {
 
 	Main sql;
-	public static JavaPlugin plugin;
+	Chat chat;
+	private static Startup plugin;
 	
 	public void onEnable() {
 		plugin = this;
 		ca.kanoa.batman.sql.CommandExecutor ce = new ca.kanoa.batman.sql.CommandExecutor();
 		sql = new Main();
+		chat = new Chat();
 		sql.onEnable();
+		chat.onEnable();
 		getCommand("batman").setExecutor(this);
 		getCommand("pvp").setExecutor(ce);
 		getCommand("pvpa").setExecutor(ce);
@@ -25,6 +29,7 @@ public class Startup extends JavaPlugin implements CommandExecutor {
 	
 	public void onDisable() {
 		sql.onDisable();
+		chat.onDisable();
 	}
 	
 	@Override
@@ -34,6 +39,10 @@ public class Startup extends JavaPlugin implements CommandExecutor {
 		for (String s : pdf.getAuthors())
 			sender.sendMessage("!: " + s);
 		return true;
+	}
+
+	public static Startup getInstance() {
+		return plugin;
 	}
 
 }

@@ -31,10 +31,10 @@ public class Main {
 	
 	public void onEnable() {
 
-		Startup.plugin.saveDefaultConfig();
-		config = Startup.plugin.getConfig();
+		Startup.getInstance().saveDefaultConfig();
+		config = Startup.getInstance().getConfig();
 
-		confighelp = new ConfigHelper(Startup.plugin);
+		confighelp = new ConfigHelper(Startup.getInstance());
 
 		killstreakConfig = confighelp.getConfig("Killstreaks.yml");
 		loadKillstreaksFromConfig();
@@ -43,19 +43,19 @@ public class Main {
 		Main.canTrackOtherStats = config.getBoolean("canTrackOtherStats");
 
 		sqlhelp = new SQLHelper(config.getBoolean("useMySQL"), getMySQLInfo());
-		Startup.plugin.getLogger().info("Getting stats!");
+		Startup.getInstance().getLogger().info("Getting stats!");
 		stats = sqlhelp.getStats();
 		stats = stats == null ? new HashSet<Stats>() : stats;
 		autoSave = true;
 
 		CommandExecutor CE = new CommandExecutor();
-		Startup.plugin.getCommand("pvp").setExecutor(CE);
-		Startup.plugin.getCommand("pvpa").setExecutor(CE);
+		Startup.getInstance().getCommand("pvp").setExecutor(CE);
+		Startup.getInstance().getCommand("pvpa").setExecutor(CE);
 
 		autosaver = new Thread(new Saver());
 		autosaver.start();
 		
-		Startup.plugin.getLogger().info("Enabled!");
+		Startup.getInstance().getLogger().info("Enabled!");
 		
 	}
 	
@@ -68,12 +68,12 @@ public class Main {
 			try{
 				killstreaks.add(new Killstreak(string[0], Integer.parseInt(string[1]), new Command(string[2])));
 			} catch (ArrayIndexOutOfBoundsException e){
-				Startup.plugin.getLogger().warning("Found badly formated killstreak near: '" + s + "'");
+				Startup.getInstance().getLogger().warning("Found badly formated killstreak near: '" + s + "'");
 			} catch (NumberFormatException e){
-				Startup.plugin.getLogger().warning("Could not find a number in the needed kills section near: '" + s + "'");
+				Startup.getInstance().getLogger().warning("Could not find a number in the needed kills section near: '" + s + "'");
 			} catch (Exception e){
 				if(debug) e.printStackTrace();
-				Startup.plugin.getLogger().warning("Unknown error (" + e.toString() + ") while parsing killstreak: '" + s + "'");
+				Startup.getInstance().getLogger().warning("Unknown error (" + e.toString() + ") while parsing killstreak: '" + s + "'");
 			}
 		}
 	}
@@ -82,8 +82,8 @@ public class Main {
 		
 		autoSave = false;
 		
-		Startup.plugin.getLogger().info("Disabling!");
-		Startup.plugin.getLogger().info("Saving stats to file...");
+		Startup.getInstance().getLogger().info("Disabling!");
+		Startup.getInstance().getLogger().info("Saving stats to file...");
 		
 		sqlhelp.sendStats(stats);
 	}
