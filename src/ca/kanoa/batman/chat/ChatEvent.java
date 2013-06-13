@@ -7,6 +7,8 @@ import org.bukkit.event.HandlerList;
 
 public class ChatEvent extends Event implements Cancellable {
 
+	private static final HandlerList handlers = new HandlerList();
+	
 	private boolean cancelled;
 	private String prefix;
 	private String suffix;
@@ -46,7 +48,7 @@ public class ChatEvent extends Event implements Cancellable {
 	
 	@Override
 	public HandlerList getHandlers() {
-		return null;
+		return handlers;
 	}
 
 	@Override
