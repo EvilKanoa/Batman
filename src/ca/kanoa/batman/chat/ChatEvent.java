@@ -88,5 +88,9 @@ public class ChatEvent extends Event implements Cancellable {
 	public void setSuffix(String suffix) {
 		this.suffix = suffix;
 	}
+	
+	public static HandlerList getHandlerList() {       
+		return handlers;   
+	}
 
 }
