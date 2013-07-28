@@ -1,10 +1,10 @@
-name: MCC API
-version: 0.11
+name: Batman API
+version: 0.12
 main: ca.kanoa.batman.startup.Startup
-desciption: A basic API for kanoa's and keiron's plugins, this alone this nothing.
-authors: [12323op, Kanoa, KraZ__, Kieron Wiltshire]
+desciption: A basic API for plugins, this alone does nothing.
+authors: [12323op, Kanoa]
 load: STARTUP
-prefix: MCC
+prefix: Batman
 permissions:
     cod.check:
         description: Allows viewing of pvp stats

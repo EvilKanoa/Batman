@@ -1,5 +1,6 @@
 package ca.kanoa.batman.startup;
 
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -35,9 +36,9 @@ public class Startup extends JavaPlugin implements CommandExecutor {
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		PluginDescriptionFile pdf = getDescription();
-		sender.sendMessage("MCC API version " + pdf.getVersion() + ", made by: ");
+		sender.sendMessage(pdf.getName() + " version " + pdf.getVersion() + ", made by: ");
 		for (String s : pdf.getAuthors())
-			sender.sendMessage("!: " + s);
+			sender.sendMessage(ChatColor.DARK_PURPLE + "    " + ChatColor.BOLD + s);
 		return true;
 	}
 
